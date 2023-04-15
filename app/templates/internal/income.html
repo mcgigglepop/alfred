@@ -11,7 +11,7 @@
             <div class="page-header">
                 <div class="row align-items-center mb-3">
                     <div class="col-sm">
-                        <h1 class="page-header-title">Income Accounts <span class="badge bg-soft-dark text-dark ms-2">5</span></h1>
+                        <h1 class="page-header-title">Monthly Income <span class="badge bg-soft-dark text-dark ms-2">5</span></h1>
                         <div class="d-flex mt-2">
                             <div class="dropdowm">
                                 <a class="text-body" href="javascript:;" id="moreOptionsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -19,7 +19,7 @@
                                 </a>
                                 <div class="dropdown-menu mt-1" aria-labelledby="moreOptionsDropdown">
                                     <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#createExpenseModal">
-                                        <i class="bi-folder-plus dropdown-item-icon"></i> New Account
+                                        <i class="bi-folder-plus dropdown-item-icon"></i> Add Income
                                     </a>        
                                 </div>
                             </div>
@@ -39,7 +39,7 @@
                     </span>
                     <ul class="nav nav-tabs page-header-tabs">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">All Accounts</a>
+                            <a class="nav-link active" href="#">All Income</a>
                         </li>
                     </ul>
                 </div>
@@ -76,7 +76,7 @@
                                 <div class="input-group-prepend input-group-text">
                                     <i class="bi-search"></i>
                                 </div>
-                                <input id="datatableSearch" type="search" class="form-control" placeholder="Search expenses" aria-label="Search expenses">
+                                <input id="datatableSearch" type="search" class="form-control" placeholder="Search income" aria-label="Search income">
                             </div>
                         </form>
                     </div>
@@ -112,25 +112,13 @@
                             </div>
                         </div>
                         <div class="dropdown">
-                            <button id="js-daterangepicker-predefined" class="btn btn-white btn-sm dropdown-toggle">
-                                <i class="bi-calendar-week"></i>
-                                <span class="js-daterangepicker-predefined-preview ms-1"></span>
-                            </button>
                             <div class="dropdown-menu dropdown-menu-end dropdown-card" aria-labelledby="showHideDropdown" style="width: 15rem;">
                                 <div class="card card-sm">
                                     <div class="card-body">
                                         <div class="d-grid gap-3">
-                                            <label class="row form-check form-switch" for="toggleColumn_order">
-                                                <span class="col-8 col-sm-9 ms-0">
-                                                    <span class="me-2">Order</span>
-                                                </span>
-                                                <span class="col-4 col-sm-3 text-end">
-                                                    <input type="checkbox" class="form-check-input" id="toggleColumn_order" checked>
-                                                </span>
-                                            </label>
                                             <label class="row form-check form-switch" for="toggleColumn_date">
                                                 <span class="col-8 col-sm-9 ms-0">
-                                                    <span class="me-2">Expense Date</span>
+                                                    <span class="me-2">Name</span>
                                                 </span>
                                                 <span class="col-4 col-sm-3 text-end">
                                                     <input type="checkbox" class="form-check-input" id="toggleColumn_date" checked>
@@ -138,7 +126,7 @@
                                             </label>
                                             <label class="row form-check form-switch" for="toggleColumn_customer">
                                                 <span class="col-8 col-sm-9 ms-0">
-                                                    <span class="me-2">Expense Name</span>
+                                                    <span class="me-2">Source</span>
                                                 </span>
                                                 <span class="col-4 col-sm-3 text-end">
                                                     <input type="checkbox" class="form-check-input" id="toggleColumn_customer" checked>
@@ -146,7 +134,7 @@
                                             </label>
                                             <label class="row form-check form-switch" for="toggleColumn_payment_status">
                                                 <span class="col-8 col-sm-9 ms-0">
-                                                    <span class="me-2">Expense Type</span>
+                                                    <span class="me-2">Frequency</span>
                                                 </span>
                                                 <span class="col-4 col-sm-3 text-end">
                                                     <input type="checkbox" class="form-check-input" id="toggleColumn_payment_status" checked>
@@ -154,7 +142,7 @@
                                             </label>
                                             <label class="row form-check form-switch" for="toggleColumn_fulfillment_status">
                                                 <span class="col-8 col-sm-9 ms-0">
-                                                    <span class="me-2">Fulfillment status</span>
+                                                    <span class="me-2">Tax Status</span>
                                                 </span>
                                                 <span class="col-4 col-sm-3 text-end">
                                                     <input type="checkbox" class="form-check-input" id="toggleColumn_fulfillment_status" checked>
@@ -162,7 +150,7 @@
                                             </label>
                                             <label class="row form-check form-switch" for="toggleColumn_payment_method">
                                                 <span class="col-8 col-sm-9 ms-0">
-                                                    <span class="me-2">Payment method</span>
+                                                    <span class="me-2">Deposit Account</span>
                                                 </span>
                                                 <span class="col-4 col-sm-3 text-end">
                                                     <input type="checkbox" class="form-check-input" id="toggleColumn_payment_method" checked>
@@ -170,7 +158,7 @@
                                             </label>
                                             <label class="row form-check form-switch" for="toggleColumn_total">
                                                 <span class="col-8 col-sm-9 ms-0">
-                                                    <span class="me-2">Total</span>
+                                                    <span class="me-2">Income Amount</span>
                                                 </span>
                                                 <span class="col-4 col-sm-3 text-end">
                                                     <input type="checkbox" class="form-check-input" id="toggleColumn_total">
@@ -216,13 +204,12 @@
                                         <label class="form-check-label" for="datatableCheckAll"></label>
                                     </div>
                                 </th>
-                                <th class="table-column-ps-0">Order</th>
-                                <th>Expense Date</th>
-                                <th>Expense Name</th>
-                                <th>Expense Type</th>
-                                <th>Fulfillment status</th>
-                                <th>Payment method</th>
-                                <th>Expense Amount</th>
+                                <th>Name</th>
+                                <th>Source</th>
+                                <th>Frequency</th>
+                                <th>Tax Status</th>
+                                <th>Deposit Account</th>
+                                <th>Income Amount</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -234,21 +221,18 @@
                                         <label class="form-check-label" for="ordersCheck1"></label>
                                     </div>
                                 </td>
-                                <td class="table-column-ps-0">
-                                    <a href="./ecommerce-order-details.html">#35463</a>
-                                </td>
-                                <td>Aug 17, 2020, 5:48 (ET)</td>
+                                <td>Primary Income</td>
                                 <td>
-                                    <a class="text-body" href="./ecommerce-customer-details.html">Jase Marley</a>
+                                    <a class="text-body" href="./ecommerce-customer-details.html">employer</a>
                                 </td>
                                 <td>
                                     <span class="badge bg-soft-success text-success">
-                                        <span class="bg-success"></span>Fixed
+                                        <span class="bg-success"></span>bi-weekly
                                     </span>
                                 </td>
                                 <td>
                                     <span class="badge bg-soft-info text-info">
-                                        <span class="legend-indicator bg-info"></span>Fulfilled
+                                        <span class="legend-indicator bg-info"></span>Taxable
                                     </span>
                                 </td>
                                 <td>
@@ -261,163 +245,7 @@
                                 <td>
                                     <div class="btn-group" role="group">
                                         <a class="btn btn-danger btn-sm" href="./users-add-user.html">
-                                            Remove Occurrence
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="table-column-pe-0">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="ordersCheck2">
-                                        <label class="form-check-label" for="ordersCheck2"></label>
-                                    </div>
-                                </td>
-                                <td class="table-column-ps-0">
-                                    <a href="./ecommerce-order-details.html">#23513</a>
-                                </td>
-                                <td>Aug 17, 2020, 2:01 (ET)</td>
-                                <td>
-                                    <a class="text-body" href="./ecommerce-customer-details.html">Mathew Gustaffson</a>
-                                </td>
-                                <td>
-                                    <span class="badge bg-soft-success text-success">
-                                        <span class="bg-success"></span>Fixed
-                                    </span>
-                                </td>
-                                <td>
-                                    <span class="badge bg-soft-dark text-dark">
-                                        <span class="legend-indicator bg-dark"></span>Unfulfilled
-                                    </span>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ url_for('static', filename='assets/svg/brands/mastercard.svg') }}" alt="Image Description">
-                                        <span class="text-dark">&bull;&bull;&bull;&bull; 2390</span>
-                                    </div>
-                                </td>
-                                <td>$2,125.00</td>
-                                <td>
-                                    <div class="btn-group" role="group">
-                                        <a class="btn btn-danger btn-sm" href="./users-add-user.html">
-                                            Remove Occurrence
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="table-column-pe-0">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="ordersCheck3">
-                                        <label class="form-check-label" for="ordersCheck3"></label>
-                                    </div>
-                                </td>
-                                <td class="table-column-ps-0">
-                                    <a href="./ecommerce-order-details.html">#62311</a>
-                                </td>
-                                <td>Aug 17, 2020, 1:55 (ET)</td>
-                                <td>
-                                    <a class="text-body" href="./ecommerce-customer-details.html">Mathew Gustaffson</a>
-                                </td>
-                                <td>
-                                    <span class="badge bg-soft-success text-success">
-                                        <span class="bg-success"></span>Fixed
-                                    </span>
-                                </td>
-                                <td>
-                                    <span class="badge bg-soft-dark text-dark">
-                                        <span class="legend-indicator bg-dark"></span>Unfulfilled
-                                    </span>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ url_for('static', filename='assets/svg/brands/paypal-icon.svg') }}" alt="Image Description">
-                                        <span class="text-dark">&bull;&bull;&bull;&bull;@gmail.com</span>
-                                    </div>
-                                </td>
-                                <td>$532.99</td>
-                                <td>
-                                    <div class="btn-group" role="group">
-                                        <a class="btn btn-danger btn-sm" href="./users-add-user.html">
-                                            Remove Occurrence
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="table-column-pe-0">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="ordersCheck4">
-                                        <label class="form-check-label" for="ordersCheck4"></label>
-                                    </div>
-                                </td>
-                                <td class="table-column-ps-0">
-                                    <a href="./ecommerce-order-details.html">#12453</a>
-                                </td>
-                                <td>Aug 17, 2020, 1:54 (ET)</td>
-                                <td>
-                                    <a class="text-body" href="./ecommerce-customer-details.html">Nicky Olvsson</a>
-                                </td>
-                                <td>
-                                    <span class="badge bg-soft-warning text-warning">
-                                        <span class="bg-warning"></span>Variable
-                                    </span>
-                                </td>
-                                <td>
-                                    <span class="badge bg-soft-dark text-dark">
-                                        <span class="legend-indicator bg-dark"></span>Unfulfilled
-                                    </span>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ url_for('static', filename='assets/svg/brands/mastercard.svg') }}" alt="Image Description">
-                                        <span class="text-dark">&bull;&bull;&bull;&bull; 3535</span>
-                                    </div>
-                                </td>
-                                <td>$1,035.02</td>
-                                <td>
-                                    <div class="btn-group" role="group">
-                                        <a class="btn btn-danger btn-sm" href="./users-add-user.html">
-                                            Remove Occurrence
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="table-column-pe-0">
-                                    <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="ordersCheck5">
-                                        <label class="form-check-label" for="ordersCheck5"></label>
-                                    </div>
-                                </td>
-                                <td class="table-column-ps-0">
-                                    <a href="./ecommerce-order-details.html">#84223</a>
-                                </td>
-                                <td>Aug 17, 2020, 1:04 (ET)</td>
-                                <td>
-                                    <a class="text-body" href="./ecommerce-customer-details.html">David Nunez</a>
-                                </td>
-                                <td>
-                                    <span class="badge bg-soft-success text-success">
-                                        <span class="bg-success"></span>Fixed
-                                    </span>
-                                </td>
-                                <td>
-                                    <span class="badge bg-soft-info text-info">
-                                        <span class="legend-indicator bg-info"></span>Fulfilled
-                                    </span>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ url_for('static', filename='assets/svg/brands/paypal-icon.svg') }}" alt="Image Description">
-                                        <span class="text-dark">&bull;&bull;&bull;&bull;@gmail.com</span>
-                                    </div>
-                                </td>
-                                <td>$68.53</td>
-                                <td>
-                                    <div class="btn-group" role="group">
-                                        <a class="btn btn-danger btn-sm" href="./users-add-user.html">
-                                            Remove Occurrence
+                                            Remove Income
                                         </a>
                                     </div>
                                 </td>
