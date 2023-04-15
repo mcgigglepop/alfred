@@ -12,479 +12,419 @@
                 <div class="row align-items-center mb-3">
                     <div class="col-sm">
                         <h1 class="page-header-title">Income Accounts <span class="badge bg-soft-dark text-dark ms-2">5</span></h1>
-                            <div class="d-flex mt-2">
-                                <div class="dropdowm">
-                                    <a class="text-body" href="javascript:;" id="moreOptionsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                        More options <i class="bi-chevron-down"></i>
-                                    </a>
-                                    <div class="dropdown-menu mt-1" aria-labelledby="moreOptionsDropdown">
-                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#createExpenseModal">
-                                            <i class="bi-folder-plus dropdown-item-icon"></i> New Account
-                                        </a>        
+                        <div class="d-flex mt-2">
+                            <div class="dropdowm">
+                                <a class="text-body" href="javascript:;" id="moreOptionsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    More options <i class="bi-chevron-down"></i>
+                                </a>
+                                <div class="dropdown-menu mt-1" aria-labelledby="moreOptionsDropdown">
+                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#createExpenseModal">
+                                        <i class="bi-folder-plus dropdown-item-icon"></i> New Account
+                                    </a>        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="js-nav-scroller hs-nav-scroller-horizontal">
+                    <span class="hs-nav-scroller-arrow-prev" style="display: none;">
+                        <a class="hs-nav-scroller-arrow-link" href="javascript:;">
+                            <i class="bi-chevron-left"></i>
+                        </a>
+                    </span>
+                    <span class="hs-nav-scroller-arrow-next" style="display: none;">
+                        <a class="hs-nav-scroller-arrow-link" href="javascript:;">
+                            <i class="bi-chevron-right"></i>
+                        </a>
+                    </span>
+                    <ul class="nav nav-tabs page-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">All Accounts</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row justify-content-end mb-3">
+                <div class="col-lg">
+                    <div id="datatableCounterInfo" style="display: none;">
+                        <div class="d-sm-flex justify-content-lg-end align-items-sm-center">
+                            <span class="d-block d-sm-inline-block fs-5 me-3 mb-2 mb-sm-0">
+                                <span id="datatableCounter">0</span>
+                                Selected
+                            </span>
+                            <a class="btn btn-outline-danger btn-sm mb-2 mb-sm-0 me-2" href="javascript:;">
+                                <i class="bi-trash"></i> Delete
+                            </a>
+                            <a class="btn btn-white btn-sm mb-2 mb-sm-0 me-2" href="javascript:;">
+                                <i class="bi-archive"></i> Archive
+                            </a>
+                            <a class="btn btn-white btn-sm mb-2 mb-sm-0 me-2" href="javascript:;">
+                                <i class="bi-upload"></i> Publish
+                            </a>
+                            <a class="btn btn-white btn-sm mb-2 mb-sm-0" href="javascript:;">
+                                <i class="bi-x-lg"></i> Unpublish
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header card-header-content-md-between">
+                    <div class="mb-2 mb-md-0">
+                        <form>
+                            <div class="input-group input-group-merge input-group-flush">
+                                <div class="input-group-prepend input-group-text">
+                                    <i class="bi-search"></i>
+                                </div>
+                                <input id="datatableSearch" type="search" class="form-control" placeholder="Search expenses" aria-label="Search expenses">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="d-grid d-sm-flex gap-2">
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-white btn-sm dropdown-toggle w-100" id="usersExportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi-download me-2"></i> Export
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-sm-end" aria-labelledby="usersExportDropdown">
+                                <span class="dropdown-header">Options</span>
+                                <a id="export-copy" class="dropdown-item" href="javascript:;">
+                                    <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ url_for('static', filename='assets/svg/illustrations/copy-icon.svg') }}" alt="Image Description">
+                                    Copy
+                                </a>
+                                <a id="export-print" class="dropdown-item" href="javascript:;">
+                                    <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ url_for('static', filename='assets/svg/illustrations/print-icon.svg') }}" alt="Image Description">
+                                    Print
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <span class="dropdown-header">Download options</span>
+                                <a id="export-excel" class="dropdown-item" href="javascript:;">
+                                    <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ url_for('static', filename='assets/svg/brands/excel-icon.svg') }}" alt="Image Description">
+                                    Excel
+                                </a>
+                                <a id="export-csv" class="dropdown-item" href="javascript:;">
+                                    <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ url_for('static', filename='assets/svg/components/placeholder-csv-format.svg') }}" alt="Image Description">
+                                    .CSV
+                                </a>
+                                <a id="export-pdf" class="dropdown-item" href="javascript:;">
+                                    <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ url_for('static', filename='assets/svg/brands/pdf-icon.svg') }}" alt="Image Description">
+                                    PDF
+                                </a>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <button id="js-daterangepicker-predefined" class="btn btn-white btn-sm dropdown-toggle">
+                                <i class="bi-calendar-week"></i>
+                                <span class="js-daterangepicker-predefined-preview ms-1"></span>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end dropdown-card" aria-labelledby="showHideDropdown" style="width: 15rem;">
+                                <div class="card card-sm">
+                                    <div class="card-body">
+                                        <div class="d-grid gap-3">
+                                            <label class="row form-check form-switch" for="toggleColumn_order">
+                                                <span class="col-8 col-sm-9 ms-0">
+                                                    <span class="me-2">Order</span>
+                                                </span>
+                                                <span class="col-4 col-sm-3 text-end">
+                                                    <input type="checkbox" class="form-check-input" id="toggleColumn_order" checked>
+                                                </span>
+                                            </label>
+                                            <label class="row form-check form-switch" for="toggleColumn_date">
+                                                <span class="col-8 col-sm-9 ms-0">
+                                                    <span class="me-2">Expense Date</span>
+                                                </span>
+                                                <span class="col-4 col-sm-3 text-end">
+                                                    <input type="checkbox" class="form-check-input" id="toggleColumn_date" checked>
+                                                </span>
+                                            </label>
+                                            <label class="row form-check form-switch" for="toggleColumn_customer">
+                                                <span class="col-8 col-sm-9 ms-0">
+                                                    <span class="me-2">Expense Name</span>
+                                                </span>
+                                                <span class="col-4 col-sm-3 text-end">
+                                                    <input type="checkbox" class="form-check-input" id="toggleColumn_customer" checked>
+                                                </span>
+                                            </label>
+                                            <label class="row form-check form-switch" for="toggleColumn_payment_status">
+                                                <span class="col-8 col-sm-9 ms-0">
+                                                    <span class="me-2">Expense Type</span>
+                                                </span>
+                                                <span class="col-4 col-sm-3 text-end">
+                                                    <input type="checkbox" class="form-check-input" id="toggleColumn_payment_status" checked>
+                                                </span>
+                                            </label>
+                                            <label class="row form-check form-switch" for="toggleColumn_fulfillment_status">
+                                                <span class="col-8 col-sm-9 ms-0">
+                                                    <span class="me-2">Fulfillment status</span>
+                                                </span>
+                                                <span class="col-4 col-sm-3 text-end">
+                                                    <input type="checkbox" class="form-check-input" id="toggleColumn_fulfillment_status" checked>
+                                                </span>
+                                            </label>
+                                            <label class="row form-check form-switch" for="toggleColumn_payment_method">
+                                                <span class="col-8 col-sm-9 ms-0">
+                                                    <span class="me-2">Payment method</span>
+                                                </span>
+                                                <span class="col-4 col-sm-3 text-end">
+                                                    <input type="checkbox" class="form-check-input" id="toggleColumn_payment_method" checked>
+                                                </span>
+                                            </label>
+                                            <label class="row form-check form-switch" for="toggleColumn_total">
+                                                <span class="col-8 col-sm-9 ms-0">
+                                                    <span class="me-2">Total</span>
+                                                </span>
+                                                <span class="col-4 col-sm-3 text-end">
+                                                    <input type="checkbox" class="form-check-input" id="toggleColumn_total">
+                                                </span>
+                                            </label>
+                                            <label class="row form-check form-switch" for="toggleColumn_actions">
+                                                <span class="col-8 col-sm-9 ms-0">
+                                                    <span class="me-2">Actions</span>
+                                                </span>
+                                                <span class="col-4 col-sm-3 text-end">
+                                                    <input type="checkbox" class="form-check-input" id="toggleColumn_actions" checked>
+                                                </span>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-        <div class="js-nav-scroller hs-nav-scroller-horizontal">
-          <span class="hs-nav-scroller-arrow-prev" style="display: none;">
-            <a class="hs-nav-scroller-arrow-link" href="javascript:;">
-              <i class="bi-chevron-left"></i>
-            </a>
-          </span>
-
-          <span class="hs-nav-scroller-arrow-next" style="display: none;">
-            <a class="hs-nav-scroller-arrow-link" href="javascript:;">
-              <i class="bi-chevron-right"></i>
-            </a>
-          </span>
-
-          <!-- Nav -->
-          <ul class="nav nav-tabs page-header-tabs">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">All Expenses</a>
-            </li>
-          </ul>
-          <!-- End Nav -->
-        </div>
-        <!-- End Nav Scroller -->
-      </div>
-      <!-- End Page Header -->
-
-      <div class="row justify-content-end mb-3">
-        <div class="col-lg">
-          <!-- Datatable Info -->
-          <div id="datatableCounterInfo" style="display: none;">
-            <div class="d-sm-flex justify-content-lg-end align-items-sm-center">
-              <span class="d-block d-sm-inline-block fs-5 me-3 mb-2 mb-sm-0">
-                <span id="datatableCounter">0</span>
-                Selected
-              </span>
-              <a class="btn btn-outline-danger btn-sm mb-2 mb-sm-0 me-2" href="javascript:;">
-                <i class="bi-trash"></i> Delete
-              </a>
-              <a class="btn btn-white btn-sm mb-2 mb-sm-0 me-2" href="javascript:;">
-                <i class="bi-archive"></i> Archive
-              </a>
-              <a class="btn btn-white btn-sm mb-2 mb-sm-0 me-2" href="javascript:;">
-                <i class="bi-upload"></i> Publish
-              </a>
-              <a class="btn btn-white btn-sm mb-2 mb-sm-0" href="javascript:;">
-                <i class="bi-x-lg"></i> Unpublish
-              </a>
-            </div>
-          </div>
-          <!-- End Datatable Info -->
-        </div>
-        <!-- End Col -->
-      </div>
-      <!-- End Row -->
-
-      <!-- Card -->
-      <div class="card">
-        <!-- Header -->
-        <div class="card-header card-header-content-md-between">
-          <div class="mb-2 mb-md-0">
-            <form>
-              <!-- Search -->
-              <div class="input-group input-group-merge input-group-flush">
-                <div class="input-group-prepend input-group-text">
-                  <i class="bi-search"></i>
                 </div>
-                <input id="datatableSearch" type="search" class="form-control" placeholder="Search expenses" aria-label="Search expenses">
-              </div>
-              <!-- End Search -->
-            </form>
-          </div>
-
-          <div class="d-grid d-sm-flex gap-2">
-            <!-- Dropdown -->
-            <div class="dropdown">
-              <button type="button" class="btn btn-white btn-sm dropdown-toggle w-100" id="usersExportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="bi-download me-2"></i> Export
-              </button>
-
-              <div class="dropdown-menu dropdown-menu-sm-end" aria-labelledby="usersExportDropdown">
-                <span class="dropdown-header">Options</span>
-                <a id="export-copy" class="dropdown-item" href="javascript:;">
-                  <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ url_for('static', filename='assets/svg/illustrations/copy-icon.svg') }}" alt="Image Description">
-                  Copy
-                </a>
-                <a id="export-print" class="dropdown-item" href="javascript:;">
-                  <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ url_for('static', filename='assets/svg/illustrations/print-icon.svg') }}" alt="Image Description">
-                  Print
-                </a>
-                <div class="dropdown-divider"></div>
-                <span class="dropdown-header">Download options</span>
-                <a id="export-excel" class="dropdown-item" href="javascript:;">
-                  <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ url_for('static', filename='assets/svg/brands/excel-icon.svg') }}" alt="Image Description">
-                  Excel
-                </a>
-                <a id="export-csv" class="dropdown-item" href="javascript:;">
-                  <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ url_for('static', filename='assets/svg/components/placeholder-csv-format.svg') }}" alt="Image Description">
-                  .CSV
-                </a>
-                <a id="export-pdf" class="dropdown-item" href="javascript:;">
-                  <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ url_for('static', filename='assets/svg/brands/pdf-icon.svg') }}" alt="Image Description">
-                  PDF
-                </a>
-              </div>
-            </div>
-            <!-- End Dropdown -->
-            
-            <!-- Dropdown -->
-            <div class="dropdown">
-                <!-- Daterangepicker -->
-            <button id="js-daterangepicker-predefined" class="btn btn-white btn-sm dropdown-toggle">
-                <i class="bi-calendar-week"></i>
-                <span class="js-daterangepicker-predefined-preview ms-1"></span>
-              </button>
-              <!-- End Daterangepicker -->
-
-
-              <div class="dropdown-menu dropdown-menu-end dropdown-card" aria-labelledby="showHideDropdown" style="width: 15rem;">
-                <div class="card card-sm">
-                  <div class="card-body">
-                    <div class="d-grid gap-3">
-                      <!-- Form Switch -->
-                      <label class="row form-check form-switch" for="toggleColumn_order">
-                        <span class="col-8 col-sm-9 ms-0">
-                          <span class="me-2">Order</span>
-                        </span>
-                        <span class="col-4 col-sm-3 text-end">
-                          <input type="checkbox" class="form-check-input" id="toggleColumn_order" checked>
-                        </span>
-                      </label>
-                      <!-- End Form Switch -->
-
-                      <!-- Form Switch -->
-                      <label class="row form-check form-switch" for="toggleColumn_date">
-                        <span class="col-8 col-sm-9 ms-0">
-                          <span class="me-2">Expense Date</span>
-                        </span>
-                        <span class="col-4 col-sm-3 text-end">
-                          <input type="checkbox" class="form-check-input" id="toggleColumn_date" checked>
-                        </span>
-                      </label>
-                      <!-- End Form Switch -->
-
-                      <!-- Form Switch -->
-                      <label class="row form-check form-switch" for="toggleColumn_customer">
-                        <span class="col-8 col-sm-9 ms-0">
-                          <span class="me-2">Expense Name</span>
-                        </span>
-                        <span class="col-4 col-sm-3 text-end">
-                          <input type="checkbox" class="form-check-input" id="toggleColumn_customer" checked>
-                        </span>
-                      </label>
-                      <!-- End Form Switch -->
-
-                      <!-- Form Switch -->
-                      <label class="row form-check form-switch" for="toggleColumn_payment_status">
-                        <span class="col-8 col-sm-9 ms-0">
-                          <span class="me-2">Expense Type</span>
-                        </span>
-                        <span class="col-4 col-sm-3 text-end">
-                          <input type="checkbox" class="form-check-input" id="toggleColumn_payment_status" checked>
-                        </span>
-                      </label>
-                      <!-- End Form Switch -->
-
-                      <!-- Form Switch -->
-                      <label class="row form-check form-switch" for="toggleColumn_fulfillment_status">
-                        <span class="col-8 col-sm-9 ms-0">
-                          <span class="me-2">Fulfillment status</span>
-                        </span>
-                        <span class="col-4 col-sm-3 text-end">
-                          <input type="checkbox" class="form-check-input" id="toggleColumn_fulfillment_status" checked>
-                        </span>
-                      </label>
-                      <!-- End Form Switch -->
-
-                      <!-- Form Switch -->
-                      <label class="row form-check form-switch" for="toggleColumn_payment_method">
-                        <span class="col-8 col-sm-9 ms-0">
-                          <span class="me-2">Payment method</span>
-                        </span>
-                        <span class="col-4 col-sm-3 text-end">
-                          <input type="checkbox" class="form-check-input" id="toggleColumn_payment_method" checked>
-                        </span>
-                      </label>
-                      <!-- End Form Switch -->
-
-                      <!-- Form Switch -->
-                      <label class="row form-check form-switch" for="toggleColumn_total">
-                        <span class="col-8 col-sm-9 ms-0">
-                          <span class="me-2">Total</span>
-                        </span>
-                        <span class="col-4 col-sm-3 text-end">
-                          <input type="checkbox" class="form-check-input" id="toggleColumn_total">
-                        </span>
-                      </label>
-                      <!-- End Form Switch -->
-
-                      <!-- Form Switch -->
-                      <label class="row form-check form-switch" for="toggleColumn_actions">
-                        <span class="col-8 col-sm-9 ms-0">
-                          <span class="me-2">Actions</span>
-                        </span>
-                        <span class="col-4 col-sm-3 text-end">
-                          <input type="checkbox" class="form-check-input" id="toggleColumn_actions" checked>
-                        </span>
-                      </label>
-                      <!-- End Form Switch -->
-                    </div>
-                  </div>
+                <div class="table-responsive datatable-custom">
+                    <table id="datatable" class="table table-hover table-borderless table-thead-bordered table-nowrap table-align-middle card-table" style="width: 100%" data-hs-datatables-options='{
+                        "columnDefs": [{
+                            "targets": [0],
+                            "orderable": false
+                            }],
+                        "order": [],
+                        "info": {
+                            "totalQty": "#datatableWithPaginationInfoTotalQty"
+                        },
+                        "search": "#datatableSearch",
+                        "entries": "#datatableEntries",
+                        "pageLength": 12,
+                        "isResponsive": false,
+                        "isShowPaging": false,
+                        "pagination": "datatablePagination"
+                    }'>
+                        <thead class="thead-light">
+                            <tr>
+                                <th class="table-column-pe-0">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll">
+                                        <label class="form-check-label" for="datatableCheckAll"></label>
+                                    </div>
+                                </th>
+                                <th class="table-column-ps-0">Order</th>
+                                <th>Expense Date</th>
+                                <th>Expense Name</th>
+                                <th>Expense Type</th>
+                                <th>Fulfillment status</th>
+                                <th>Payment method</th>
+                                <th>Expense Amount</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="table-column-pe-0">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="ordersCheck1">
+                                        <label class="form-check-label" for="ordersCheck1"></label>
+                                    </div>
+                                </td>
+                                <td class="table-column-ps-0">
+                                    <a href="./ecommerce-order-details.html">#35463</a>
+                                </td>
+                                <td>Aug 17, 2020, 5:48 (ET)</td>
+                                <td>
+                                    <a class="text-body" href="./ecommerce-customer-details.html">Jase Marley</a>
+                                </td>
+                                <td>
+                                    <span class="badge bg-soft-success text-success">
+                                        <span class="bg-success"></span>Fixed
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge bg-soft-info text-info">
+                                        <span class="legend-indicator bg-info"></span>Fulfilled
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ url_for('static', filename='assets/svg/brands/bank-of-america-icon.svg') }}" alt="Image Description">
+                                        <span class="text-dark">&bull;&bull;&bull;&bull; checking acct.</span>
+                                    </div>
+                                </td>
+                                <td>$256.39</td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a class="btn btn-danger btn-sm" href="./users-add-user.html">
+                                            Remove Occurrence
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="table-column-pe-0">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="ordersCheck2">
+                                        <label class="form-check-label" for="ordersCheck2"></label>
+                                    </div>
+                                </td>
+                                <td class="table-column-ps-0">
+                                    <a href="./ecommerce-order-details.html">#23513</a>
+                                </td>
+                                <td>Aug 17, 2020, 2:01 (ET)</td>
+                                <td>
+                                    <a class="text-body" href="./ecommerce-customer-details.html">Mathew Gustaffson</a>
+                                </td>
+                                <td>
+                                    <span class="badge bg-soft-success text-success">
+                                        <span class="bg-success"></span>Fixed
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge bg-soft-dark text-dark">
+                                        <span class="legend-indicator bg-dark"></span>Unfulfilled
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ url_for('static', filename='assets/svg/brands/mastercard.svg') }}" alt="Image Description">
+                                        <span class="text-dark">&bull;&bull;&bull;&bull; 2390</span>
+                                    </div>
+                                </td>
+                                <td>$2,125.00</td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a class="btn btn-danger btn-sm" href="./users-add-user.html">
+                                            Remove Occurrence
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="table-column-pe-0">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="ordersCheck3">
+                                        <label class="form-check-label" for="ordersCheck3"></label>
+                                    </div>
+                                </td>
+                                <td class="table-column-ps-0">
+                                    <a href="./ecommerce-order-details.html">#62311</a>
+                                </td>
+                                <td>Aug 17, 2020, 1:55 (ET)</td>
+                                <td>
+                                    <a class="text-body" href="./ecommerce-customer-details.html">Mathew Gustaffson</a>
+                                </td>
+                                <td>
+                                    <span class="badge bg-soft-success text-success">
+                                        <span class="bg-success"></span>Fixed
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge bg-soft-dark text-dark">
+                                        <span class="legend-indicator bg-dark"></span>Unfulfilled
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ url_for('static', filename='assets/svg/brands/paypal-icon.svg') }}" alt="Image Description">
+                                        <span class="text-dark">&bull;&bull;&bull;&bull;@gmail.com</span>
+                                    </div>
+                                </td>
+                                <td>$532.99</td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a class="btn btn-danger btn-sm" href="./users-add-user.html">
+                                            Remove Occurrence
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="table-column-pe-0">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="ordersCheck4">
+                                        <label class="form-check-label" for="ordersCheck4"></label>
+                                    </div>
+                                </td>
+                                <td class="table-column-ps-0">
+                                    <a href="./ecommerce-order-details.html">#12453</a>
+                                </td>
+                                <td>Aug 17, 2020, 1:54 (ET)</td>
+                                <td>
+                                    <a class="text-body" href="./ecommerce-customer-details.html">Nicky Olvsson</a>
+                                </td>
+                                <td>
+                                    <span class="badge bg-soft-warning text-warning">
+                                        <span class="bg-warning"></span>Variable
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge bg-soft-dark text-dark">
+                                        <span class="legend-indicator bg-dark"></span>Unfulfilled
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ url_for('static', filename='assets/svg/brands/mastercard.svg') }}" alt="Image Description">
+                                        <span class="text-dark">&bull;&bull;&bull;&bull; 3535</span>
+                                    </div>
+                                </td>
+                                <td>$1,035.02</td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a class="btn btn-danger btn-sm" href="./users-add-user.html">
+                                            Remove Occurrence
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="table-column-pe-0">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="ordersCheck5">
+                                        <label class="form-check-label" for="ordersCheck5"></label>
+                                    </div>
+                                </td>
+                                <td class="table-column-ps-0">
+                                    <a href="./ecommerce-order-details.html">#84223</a>
+                                </td>
+                                <td>Aug 17, 2020, 1:04 (ET)</td>
+                                <td>
+                                    <a class="text-body" href="./ecommerce-customer-details.html">David Nunez</a>
+                                </td>
+                                <td>
+                                    <span class="badge bg-soft-success text-success">
+                                        <span class="bg-success"></span>Fixed
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge bg-soft-info text-info">
+                                        <span class="legend-indicator bg-info"></span>Fulfilled
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ url_for('static', filename='assets/svg/brands/paypal-icon.svg') }}" alt="Image Description">
+                                        <span class="text-dark">&bull;&bull;&bull;&bull;@gmail.com</span>
+                                    </div>
+                                </td>
+                                <td>$68.53</td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a class="btn btn-danger btn-sm" href="./users-add-user.html">
+                                            Remove Occurrence
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-              </div>
-            </div>
-            <!-- End Dropdown -->
-          </div>
-        </div>
-        <!-- End Header -->
-
-        <!-- Table -->
-        <div class="table-responsive datatable-custom">
-          <table id="datatable" class="table table-hover table-borderless table-thead-bordered table-nowrap table-align-middle card-table" style="width: 100%" data-hs-datatables-options='{
-                   "columnDefs": [{
-                      "targets": [0],
-                      "orderable": false
-                    }],
-                   "order": [],
-                   "info": {
-                     "totalQty": "#datatableWithPaginationInfoTotalQty"
-                   },
-                   "search": "#datatableSearch",
-                   "entries": "#datatableEntries",
-                   "pageLength": 12,
-                   "isResponsive": false,
-                   "isShowPaging": false,
-                   "pagination": "datatablePagination"
-                 }'>
-            <thead class="thead-light">
-              <tr>
-                <th class="table-column-pe-0">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll">
-                    <label class="form-check-label" for="datatableCheckAll"></label>
-                  </div>
-                </th>
-                <th class="table-column-ps-0">Order</th>
-                <th>Expense Date</th>
-                <th>Expense Name</th>
-                <th>Expense Type</th>
-                <th>Fulfillment status</th>
-                <th>Payment method</th>
-                <th>Expense Amount</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <td class="table-column-pe-0">
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="ordersCheck1">
-                    <label class="form-check-label" for="ordersCheck1"></label>
-                  </div>
-                </td>
-                <td class="table-column-ps-0">
-                  <a href="./ecommerce-order-details.html">#35463</a>
-                </td>
-                <td>Aug 17, 2020, 5:48 (ET)</td>
-                <td>
-                  <a class="text-body" href="./ecommerce-customer-details.html">Jase Marley</a>
-                </td>
-                <td>
-                  <span class="badge bg-soft-success text-success">
-                    <span class="bg-success"></span>Fixed
-                  </span>
-                </td>
-                <td>
-                  <span class="badge bg-soft-info text-info">
-                    <span class="legend-indicator bg-info"></span>Fulfilled
-                  </span>
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ url_for('static', filename='assets/svg/brands/bank-of-america-icon.svg') }}" alt="Image Description">
-                    <span class="text-dark">&bull;&bull;&bull;&bull; checking acct.</span>
-                  </div>
-                </td>
-                <td>$256.39</td>
-                <td>
-                  <div class="btn-group" role="group">
-                    <a class="btn btn-danger btn-sm" href="./users-add-user.html">
-                        Remove Occurrence
-                      </a>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="table-column-pe-0">
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="ordersCheck2">
-                    <label class="form-check-label" for="ordersCheck2"></label>
-                  </div>
-                </td>
-                <td class="table-column-ps-0">
-                  <a href="./ecommerce-order-details.html">#23513</a>
-                </td>
-                <td>Aug 17, 2020, 2:01 (ET)</td>
-                <td>
-                  <a class="text-body" href="./ecommerce-customer-details.html">Mathew Gustaffson</a>
-                </td>
-                <td>
-                  <span class="badge bg-soft-success text-success">
-                    <span class="bg-success"></span>Fixed
-                  </span>
-                </td>
-                <td>
-                  <span class="badge bg-soft-dark text-dark">
-                    <span class="legend-indicator bg-dark"></span>Unfulfilled
-                  </span>
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ url_for('static', filename='assets/svg/brands/mastercard.svg') }}" alt="Image Description">
-                    <span class="text-dark">&bull;&bull;&bull;&bull; 2390</span>
-                  </div>
-                </td>
-                <td>$2,125.00</td>
-                <td>
-                    <div class="btn-group" role="group">
-                        <a class="btn btn-danger btn-sm" href="./users-add-user.html">
-                            Remove Occurrence
-                          </a>
-                      </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="table-column-pe-0">
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="ordersCheck3">
-                    <label class="form-check-label" for="ordersCheck3"></label>
-                  </div>
-                </td>
-                <td class="table-column-ps-0">
-                  <a href="./ecommerce-order-details.html">#62311</a>
-                </td>
-                <td>Aug 17, 2020, 1:55 (ET)</td>
-                <td>
-                  <a class="text-body" href="./ecommerce-customer-details.html">Mathew Gustaffson</a>
-                </td>
-                <td>
-                  <span class="badge bg-soft-success text-success">
-                    <span class="bg-success"></span>Fixed
-                  </span>
-                </td>
-                <td>
-                  <span class="badge bg-soft-dark text-dark">
-                    <span class="legend-indicator bg-dark"></span>Unfulfilled
-                  </span>
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ url_for('static', filename='assets/svg/brands/paypal-icon.svg') }}" alt="Image Description">
-                    <span class="text-dark">&bull;&bull;&bull;&bull;@gmail.com</span>
-                  </div>
-                </td>
-                <td>$532.99</td>
-                <td>
-                    <div class="btn-group" role="group">
-                        <a class="btn btn-danger btn-sm" href="./users-add-user.html">
-                            Remove Occurrence
-                          </a>
-                      </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="table-column-pe-0">
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="ordersCheck4">
-                    <label class="form-check-label" for="ordersCheck4"></label>
-                  </div>
-                </td>
-                <td class="table-column-ps-0">
-                  <a href="./ecommerce-order-details.html">#12453</a>
-                </td>
-                <td>Aug 17, 2020, 1:54 (ET)</td>
-                <td>
-                  <a class="text-body" href="./ecommerce-customer-details.html">Nicky Olvsson</a>
-                </td>
-                <td>
-                  <span class="badge bg-soft-warning text-warning">
-                    <span class="bg-warning"></span>Variable
-                  </span>
-                </td>
-                <td>
-                  <span class="badge bg-soft-dark text-dark">
-                    <span class="legend-indicator bg-dark"></span>Unfulfilled
-                  </span>
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ url_for('static', filename='assets/svg/brands/mastercard.svg') }}" alt="Image Description">
-                    <span class="text-dark">&bull;&bull;&bull;&bull; 3535</span>
-                  </div>
-                </td>
-                <td>$1,035.02</td>
-                <td>
-                    <div class="btn-group" role="group">
-                        <a class="btn btn-danger btn-sm" href="./users-add-user.html">
-                            Remove Occurrence
-                          </a>
-                      </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="table-column-pe-0">
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="ordersCheck5">
-                    <label class="form-check-label" for="ordersCheck5"></label>
-                  </div>
-                </td>
-                <td class="table-column-ps-0">
-                  <a href="./ecommerce-order-details.html">#84223</a>
-                </td>
-                <td>Aug 17, 2020, 1:04 (ET)</td>
-                <td>
-                  <a class="text-body" href="./ecommerce-customer-details.html">David Nunez</a>
-                </td>
-                <td>
-                  <span class="badge bg-soft-success text-success">
-                    <span class="bg-success"></span>Fixed
-                  </span>
-                </td>
-                <td>
-                  <span class="badge bg-soft-info text-info">
-                    <span class="legend-indicator bg-info"></span>Fulfilled
-                  </span>
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ url_for('static', filename='assets/svg/brands/paypal-icon.svg') }}" alt="Image Description">
-                    <span class="text-dark">&bull;&bull;&bull;&bull;@gmail.com</span>
-                  </div>
-                </td>
-                <td>$68.53</td>
-                <td>
-                    <div class="btn-group" role="group">
-                        <a class="btn btn-danger btn-sm" href="./users-add-user.html">
-                            Remove Occurrence
-                          </a>
-                      </div>
-                </td>
-              </tr>
-
-
-            </tbody>
-          </table>
-        </div>
         <!-- End Table -->
 
         <!-- Footer -->
