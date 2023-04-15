@@ -1,51 +1,31 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl   footer-offset">
-
-  <script src="{{ url_for('static', filename='assets/js/hs.theme-appearance.js') }}"></script>
-
-  <script src="{{ url_for('static', filename='assets/vendor/hs-navbar-vertical-aside/dist/hs-navbar-vertical-aside-mini-cache.js') }}"></script>
-
-  {% include 'internal/_header.html' %}
-  {% include 'internal/_sidebar.html' %}
-
-
-
-
-  <main id="content" role="main" class="main">
-    <!-- Content -->
-    <div class="content container-fluid">
-      <!-- Page Header -->
-      <div class="page-header">
-        <div class="row align-items-center mb-3">
-          <div class="col-sm">
-            <h1 class="page-header-title">Expenses <span class="badge bg-soft-dark text-dark ms-2">5</span></h1>
-
-            <div class="d-flex mt-2">
-
-              <!-- Dropdown -->
-              <div class="dropdowm">
-                <a class="text-body" href="javascript:;" id="moreOptionsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                  More options <i class="bi-chevron-down"></i>
-                </a>
-
-                <div class="dropdown-menu mt-1" aria-labelledby="moreOptionsDropdown">
-                  <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#createExpenseModal">
-                    <i class="bi-folder-plus dropdown-item-icon"></i> New Expense
-                  </a>
-                  
-                </div>
-              </div>
-              <!-- End Dropdown -->
-            </div>
-          </div>
-          <!-- End Col -->
-        </div>
-        <!-- End Row -->
-
-        <!-- Nav Scroller -->
+    <body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl footer-offset">
+    <script src="{{ url_for('static', filename='assets/js/hs.theme-appearance.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/vendor/hs-navbar-vertical-aside/dist/hs-navbar-vertical-aside-mini-cache.js') }}"></script>
+    {% include 'internal/_header.html' %}
+    {% include 'internal/_sidebar.html' %}
+    <main id="content" role="main" class="main">
+        <div class="content container-fluid">
+            <div class="page-header">
+                <div class="row align-items-center mb-3">
+                    <div class="col-sm">
+                        <h1 class="page-header-title">Income Accounts <span class="badge bg-soft-dark text-dark ms-2">5</span></h1>
+                            <div class="d-flex mt-2">
+                                <div class="dropdowm">
+                                    <a class="text-body" href="javascript:;" id="moreOptionsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                        More options <i class="bi-chevron-down"></i>
+                                    </a>
+                                    <div class="dropdown-menu mt-1" aria-labelledby="moreOptionsDropdown">
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#createExpenseModal">
+                                            <i class="bi-folder-plus dropdown-item-icon"></i> New Account
+                                        </a>        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
         <div class="js-nav-scroller hs-nav-scroller-horizontal">
           <span class="hs-nav-scroller-arrow-prev" style="display: none;">
             <a class="hs-nav-scroller-arrow-link" href="javascript:;">
