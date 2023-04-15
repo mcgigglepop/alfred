@@ -1,0 +1,90 @@
+<div class="modal fade" id="createExpenseModal" tabindex="-1" aria-labelledby="createExpenseModalLabel" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="createExpenseModalLabel">Add Account</h4>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<form class="js-validate needs-validation" method="post" action='add-account' novalidate>
+				<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+				<div class="modal-body">
+					<div class="mb-4">
+						<label class="form-label" for="addAccountName">Account Name</label>
+						<input type="text" class="form-control form-control-lg" name="addAccountName" id="addAccountName" placeholder="account name" aria-label="account name" required>
+						<span class="invalid-feedback">Please enter an account name.</span>
+					</div>
+					<div class="mb-4">
+						<label class="form-label" for="signupSrPassword">Account Type</label>
+						<div class="tom-select-custom mb-4">
+							<select class="js-select form-select form-control-lg" name="addAccountType" id="locationLabel">
+								<option value="Banking" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="/static/assets/img/icons/profits.png" alt="banking"><span class="text-truncate">Banking</span></span>'>Banking</option>
+								<option value="Email" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="/static/assets/img/icons/gmail.png" alt="email"><span class="text-truncate">Email</span></span>'>Email</option>
+								<option value="Streaming" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="/static/assets/img/icons/netflix.png" alt="streaming"><span class="text-truncate">Streaming</span></span>'>Streaming</option>
+								<option value="Other" data-option-template='<span class="d-flex align-items-center"><img class="avatar avatar-xss avatar-circle me-2" src="/static/assets/img/icons/key.png" alt="key"><span class="text-truncate">Other</span></span>'>Other</option>
+							</select>
+						</div>
+						<span class="invalid-feedback">Please choose an account type.</span>
+					</div>
+					<div class="mb-4">
+						<label class="form-label" for="addAccountUsername">Username</label>
+						<input type="text" class="form-control form-control-lg" name="addAccountUsername" id="addAccountUsername" placeholder="username" aria-label="username" required>
+						<span class="invalid-feedback">Please enter a username.</span>
+					</div>
+					<div class="mb-4">
+						<label class="form-label" for="signupSrPassword">Password</label>
+						<div class="input-group input-group-merge" data-hs-validation-validate-class>
+							<input type="password" class="js-toggle-password form-control form-control-lg" name="password" id="signupSrPassword" placeholder="password" aria-label="password" required minlength="0" data-hs-toggle-password-options='{
+								"target": "#changePassTarget",
+								"defaultClass": "bi-eye-slash",
+								"showClass": "bi-eye",
+								"classChangeTarget": "#changePassIcon"
+							}'>
+							<a id="changePassTarget" class="input-group-append input-group-text" href="javascript:;">
+								<i id="changePassIcon" class="bi-eye"></i>
+							</a>
+						</div>
+						<span class="invalid-feedback">Please enter a password.</span>
+					</div>
+					<hr class="mb-4">
+					<div class="mb-4">
+						<div class="js-add-field mb-4" data-hs-add-field-options='{
+							"template": "#addTagFieldTemplate",
+							"container": "#addTagFieldContainer",
+							"defaultCreated": 0
+							}'>
+							<label for="tagLabel" class="form-label">Tags <span class="form-label-secondary">(Optional)</span></label>
+							<div class="input-group">
+								<input type="text" class="js-input-mask form-control" name="tag" id="tagLabel" placeholder="Tag Name" aria-label="Tag Name">
+							</div>
+							<div id="addTagFieldContainer"></div>
+							<a href="javascript:;" class="js-create-field form-link">
+								<i class="bi-plus"></i> Add Tag
+							</a>
+						</div>
+						<div id="addTagFieldTemplate" style="display: none;">
+							<div class="input-group-add-field">
+								<input type="text" class="form-control" data-name="tagLine" placeholder="Tag Name" aria-label="Tag Name">
+								<a class="js-delete-field input-group-add-field-delete" href="javascript:;">
+									<i class="bi-x"></i>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<div class="row align-items-sm-center flex-grow-1 mx-n2">
+						<div class="col-sm mb-2 mb-sm-0">
+							<p class="modal-footer-text">What is this? <i class="bi-question-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Save a username/password combination or account credential to your profile"></i></p>
+						</div>
+						<div class="col-sm-auto">
+							<div class="d-flex gap-3">
+								<button type="button" class="btn btn-white" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+								<button type="submit" class="btn btn-primary">Add</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
