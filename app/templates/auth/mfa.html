@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block content %}    
+    <body>
+        <script src="{{ url_for('static', filename='assets/js/hs.theme-appearance.js') }}"></script>
+        <main id="content" role="main" class="main">
+            <div class="position-fixed top-0 end-0 start-0 bg-img-start" style="height: 32rem; background-image: url(../../static/assets/svg/components/card-6.svg);">
+                <div class="shape shape-bottom zi-1">
+                    <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1921 273">
+                        <polygon fill="#fff" points="0,273 1921,273 1921,0 " />
+                    </svg>
+                </div>
+            </div>
+            <div class="container py-5 py-sm-7">
+                <a class="d-flex justify-content-center mb-5" href="./index.html">
+                    <img class="zi-2" src="{{ url_for('static', filename='assets/svg/logos/logo.svg') }}" alt="Image Description" style="width: 8rem;">
+                </a>
+                <div class="mx-auto" style="max-width: 30rem;">
+                    <div class="card card-lg mb-5">
+                        <div class="card-body text-center">
+                            <div class="mb-4">
+                                <img class="avatar avatar-xxl avatar-4x3" src="{{ url_for('static', filename='assets/svg/illustrations/oc-unlock.svg') }}" alt="Image Description" data-hs-theme-appearance="default">
+                                <img class="avatar avatar-xxl avatar-4x3" src="{{ url_for('static', filename='assets/svg/illustrations-light/oc-unlock.svg') }}" alt="Image Description" data-hs-theme-appearance="dark">
+                            </div>
+                            <div class="mb-5">
+                                <h1 class="display-5">2-step Verification</h1>
+                                <p class="mb-0">We sent a verification code to your email.</p>
+                                <p>Enter the code from the email in the field below.</p>
+                            </div>
+                            <form class="js-validate needs-validation" method="post" action='mfa' novalidate>
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                <div class="row gx-2 gx-sm-3">
+                                    <div class="col">
+                                        <div class="mb-4">
+                                            <input type="text" class="form-control form-control-single-number code-input" name="code1" id="twoStepVerificationSrCodeInput1" placeholder="" aria-label="" maxlength="1" autocomplete="off" autocapitalize="off" spellcheck="false" autofocus>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="mb-4">
+                                            <input type="text" class="form-control form-control-single-number code-input" name="code2" id="twoStepVerificationSrCodeInput2" placeholder="" aria-label="" maxlength="1" autocomplete="off" autocapitalize="off" spellcheck="false">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="mb-4">
+                                            <input type="text" class="form-control form-control-single-number code-input" name="code3" id="twoStepVerificationSrCodeInput3" placeholder="" aria-label="" maxlength="1" autocomplete="off" autocapitalize="off" spellcheck="false">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="mb-4">
+                                            <input type="text" class="form-control form-control-single-number code-input" name="code4" id="twoStepVerificationSrCodeInput4" placeholder="" aria-label="" maxlength="1" autocomplete="off" autocapitalize="off" spellcheck="false">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="register-alert" class="pb-2" role="alert">
+                                    {% with messages = get_flashed_messages() %}
+                                        {% if messages %}
+                                            <div class="notification is-danger text-center text-danger">
+                                                {{ messages[0] }}
+                                            </div>
+                                        {% endif %}
+                                    {% endwith %}
+                                </div>
+                                <div class="d-grid mb-3">
+                                    <button type="submit" class="btn btn-primary btn-lg">Verify my account</button>
+                                </div>
+                                <div class="text-center">
+                                    <p>Haven't received it? <a href="#" id="resendMfa">Resend a new code.</a></p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script src="{{ url_for('static', filename='assets/vendor/jquery/dist/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/vendor/jquery-migrate/dist/jquery-migrate.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/vendor/hs-toggle-password/dist/js/hs-toggle-password.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/vendor/tom-select/dist/js/tom-select.complete.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/theme.min.js') }}"></script>
+        <script>
+            (function() {
+                window.onload = function () {
+                    HSBsValidation.init('.js-validate', {
+                        onSubmit: data => {
+                        }
+                    })
+                
+                    new HSTogglePassword('.js-toggle-password')
+            
+                    HSCore.components.HSTomSelect.init('.js-select')
+                }
+            })()
+        </script>
+        <script>
+            const inputElements = [...document.querySelectorAll('input.code-input')]    
+            
+            inputElements.forEach((ele, index) => {
+                ele.addEventListener('keydown', (e) => {
+                    if (e.keyCode === 8 && e.target.value === '') inputElements[Math.max(0, index - 1)].focus()
+                })
+                ele.addEventListener('input', (e) => {
+                    const [first, ...rest] = e.target.value
+                    
+                    e.target.value = first ?? '' // first will be undefined when backspace was entered, so set the input to ""
+                    
+                    const lastInputBox = index === inputElements.length - 1
+                    const didInsertContent = first !== undefined
+                    
+                    if (didInsertContent && !lastInputBox) {
+                        inputElements[index + 1].focus()
+                        inputElements[index + 1].value = rest.join('')
+                        inputElements[index + 1].dispatchEvent(new Event('input'))
+                    }
+                })
+            })
+        </script>
+        <script>
+            $("#resendMfa").click(function() {
+                location.reload();
+            });
+        </script>
+    </body>
+{% endblock %}

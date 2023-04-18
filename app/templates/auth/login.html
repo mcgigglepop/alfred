@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <body>
+        <script src="{{ url_for('static', filename='assets/js/hs.theme-appearance.js') }}"></script>
+        <main id="content" role="main" class="main">
+            <div class="position-fixed top-0 end-0 start-0 bg-img-start" style="height: 32rem; background-image: url(../../static/assets/svg/components/card-6.svg);">
+                <div class="shape shape-bottom zi-1">
+                    <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1921 273">
+                        <polygon fill="#fff" points="0,273 1921,273 1921,0 " />
+                    </svg>
+                </div>
+            </div>
+            <div class="container py-5 py-sm-7">
+                <div class="mx-auto" style="max-width: 30rem;">
+                    <div class="card card-lg mb-5">
+                        <div class="card-body">
+                            <form class="js-validate needs-validation" method="post" action="login" novalidate>
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                <div class="text-center">
+                                    <div class="mb-5">
+                                        <h1 class="display-5">Sign in</h1>
+                                        <p>Don't have an account yet? <a class="link" href="{{ url_for('auth.register') }}">Sign up here</a></p>
+                                    </div>
+                                </div> 
+                                <div class="mb-4">
+                                    <label class="form-label" for="signinSrEmail">Your email</label>
+                                    <input type="email" class="form-control form-control-lg" name="email" id="signinSrEmail" tabindex="1" placeholder="email@address.com" aria-label="email@address.com" required>
+                                    <span class="invalid-feedback">Please enter a valid email address.</span>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label w-100" for="signupSrPassword" tabindex="0">
+                                        <span class="d-flex justify-content-between align-items-center">
+                                            <span>Password</span>
+                                            <a class="form-label-link mb-0" href="{{ url_for('auth.resetPassword') }}">Forgot Password?</a>
+                                        </span>
+                                    </label> 
+                                    <div class="input-group input-group-merge" data-hs-validation-validate-class>
+                                        <input type="password" class="js-toggle-password form-control form-control-lg" name="password" id="signupSrPassword" placeholder="8+ characters required" aria-label="8+ characters required" required minlength="8" data-hs-toggle-password-options='{
+                                            "target": "#changePassTarget",
+                                            "defaultClass": "bi-eye-slash",
+                                            "showClass": "bi-eye",
+                                            "classChangeTarget": "#changePassIcon"
+                                        }'>
+                                        <a id="changePassTarget" class="input-group-append input-group-text" href="javascript:;">
+                                            <i id="changePassIcon" class="bi-eye"></i>
+                                        </a>
+                                    </div>
+                                    <span class="invalid-feedback">Please enter a valid password.</span>
+                                </div>
+                                <div id="register-alert" class="mb-5" role="alert">
+                                    {% with messages = get_flashed_messages() %}
+                                        {% if messages %}
+                                            <div class="notification is-danger text-center text-danger">
+                                                {{ messages[0] }}
+                                            </div>
+                                        {% endif %}
+                                    {% endwith %}
+                                </div>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary btn-lg">Sign in</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script src="{{ url_for('static', filename='assets/vendor/jquery/dist/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/vendor/jquery-migrate/dist/jquery-migrate.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/vendor/hs-toggle-password/dist/js/hs-toggle-password.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/theme.min.js') }}"></script>
+        <script>
+            (function() {
+                window.onload = function () {
+                    HSBsValidation.init('.js-validate', {
+                        onSubmit: data => {
+                        
+                        }
+                    })
+                
+                    new HSTogglePassword('.js-toggle-password')
+                }
+            })()
+        </script>
+    </body>
+{% endblock %}
