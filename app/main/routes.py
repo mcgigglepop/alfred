@@ -21,3 +21,10 @@ def depositAccounts():
     Route and method for rendering the deposit accounts page.
     """
     return render_template('internal/deposit-accounts.html', title='Deposit Accounts')
+
+@bp.route('/dashboard', methods=['GET', 'POST'])
+def dashboard():
+    """
+    Route and method for rendering the income dashboard page.
+    """
+    return render_template('internal/income.html', title='Dashboard')
