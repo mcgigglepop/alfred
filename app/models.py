@@ -11,6 +11,8 @@ class User(UserMixin, db.Model):
     passwordHash = db.Column(db.String(128))
     registeredDate = db.Column(db.DateTime, default=datetime.utcnow)
     accountType = db.Column(db.String(64), default='free')
+    accounts = db.relationship('DepositAccount', backref='author', lazy='dynamic')
+
      
     def __repr__(self):
         return '<User {}>'.format(self.email)
@@ -27,6 +29,14 @@ class User(UserMixin, db.Model):
     def getName(self):
         return f'{self.firstName} {self.lastName}'
 
+class DepositAccount(UserMixin, db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    accountName = db.Column(db.String(128))
+    accountType = db.Column(db.String(128))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+    def __repr__(self):
+        return '<DepositAccount {}>'.format(self.accountName)
     
 @login.user_loader
 def load_user(id):
