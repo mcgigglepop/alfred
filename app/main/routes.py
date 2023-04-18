@@ -14,3 +14,10 @@ def income():
     Route and method for rendering the income accounts page.
     """
     return render_template('internal/income.html', title='Income Accounts')
+
+@bp.route('/deposit-accounts', methods=['GET', 'POST'])
+def depositAccounts():
+    """
+    Route and method for rendering the deposit accounts page.
+    """
+    return render_template('internal/deposit-accounts.html', title='DepositAccounts')
