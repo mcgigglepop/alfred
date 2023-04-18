@@ -20,4 +20,4 @@ def depositAccounts():
     """
     Route and method for rendering the deposit accounts page.
     """
-    return render_template('internal/deposit-accounts.html', title='DepositAccounts')
+    return render_template('internal/deposit-accounts.html', title='Deposit Accounts')

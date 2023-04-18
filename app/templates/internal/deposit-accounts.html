@@ -11,15 +11,15 @@
                 <div class="page-header">
                     <div class="row align-items-center mb-3">
                         <div class="col-sm">
-                            <h1 class="page-header-title">Monthly Income <span class="badge bg-soft-dark text-dark ms-2">5</span></h1>
+                            <h1 class="page-header-title">Deposit Accounts <span class="badge bg-soft-dark text-dark ms-2">5</span></h1>
                             <div class="d-flex mt-2">
                                 <div class="dropdowm">
                                     <a class="text-body" href="javascript:;" id="moreOptionsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                         More options <i class="bi-chevron-down"></i>
                                     </a>
                                     <div class="dropdown-menu mt-1" aria-labelledby="moreOptionsDropdown">
-                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#createIncomeModal">
-                                            <i class="bi-folder-plus dropdown-item-icon"></i> Add Income
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#createDepositAccountModal">
+                                            <i class="bi-folder-plus dropdown-item-icon"></i> Create Account
                                         </a>        
                                     </div>
                                 </div>
@@ -39,7 +39,7 @@
                         </span>
                         <ul class="nav nav-tabs page-header-tabs">
                             <li class="nav-item">
-                                <a class="nav-link active" href="#">All Income</a>
+                                <a class="nav-link active" href="#">Accounts</a>
                             </li>
                         </ul>
                     </div>
@@ -76,7 +76,7 @@
                                     <div class="input-group-prepend input-group-text">
                                         <i class="bi-search"></i>
                                     </div>
-                                    <input id="datatableSearch" type="search" class="form-control" placeholder="Search income" aria-label="Search income">
+                                    <input id="datatableSearch" type="search" class="form-control" placeholder="Search accounts" aria-label="Search accounts">
                                 </div>
                             </form>
                         </div>
@@ -118,7 +118,7 @@
                                             <div class="d-grid gap-3">
                                                 <label class="row form-check form-switch" for="toggleColumn_date">
                                                     <span class="col-8 col-sm-9 ms-0">
-                                                        <span class="me-2">Income Name</span>
+                                                        <span class="me-2">Account Name</span>
                                                     </span>
                                                     <span class="col-4 col-sm-3 text-end">
                                                         <input type="checkbox" class="form-check-input" id="toggleColumn_date" checked>
@@ -126,42 +126,10 @@
                                                 </label>
                                                 <label class="row form-check form-switch" for="toggleColumn_customer">
                                                     <span class="col-8 col-sm-9 ms-0">
-                                                        <span class="me-2">Source</span>
+                                                        <span class="me-2">Account Type</span>
                                                     </span>
                                                     <span class="col-4 col-sm-3 text-end">
                                                         <input type="checkbox" class="form-check-input" id="toggleColumn_customer" checked>
-                                                    </span>
-                                                </label>
-                                                <label class="row form-check form-switch" for="toggleColumn_payment_status">
-                                                    <span class="col-8 col-sm-9 ms-0">
-                                                        <span class="me-2">Frequency</span>
-                                                    </span>
-                                                    <span class="col-4 col-sm-3 text-end">
-                                                        <input type="checkbox" class="form-check-input" id="toggleColumn_payment_status" checked>
-                                                    </span>
-                                                </label>
-                                                <label class="row form-check form-switch" for="toggleColumn_fulfillment_status">
-                                                    <span class="col-8 col-sm-9 ms-0">
-                                                        <span class="me-2">Tax Status</span>
-                                                    </span>
-                                                    <span class="col-4 col-sm-3 text-end">
-                                                        <input type="checkbox" class="form-check-input" id="toggleColumn_fulfillment_status" checked>
-                                                    </span>
-                                                </label>
-                                                <label class="row form-check form-switch" for="toggleColumn_payment_method">
-                                                    <span class="col-8 col-sm-9 ms-0">
-                                                        <span class="me-2">Deposit Account</span>
-                                                    </span>
-                                                    <span class="col-4 col-sm-3 text-end">
-                                                        <input type="checkbox" class="form-check-input" id="toggleColumn_payment_method" checked>
-                                                    </span>
-                                                </label>
-                                                <label class="row form-check form-switch" for="toggleColumn_total">
-                                                    <span class="col-8 col-sm-9 ms-0">
-                                                        <span class="me-2">Income Amount</span>
-                                                    </span>
-                                                    <span class="col-4 col-sm-3 text-end">
-                                                        <input type="checkbox" class="form-check-input" id="toggleColumn_total">
                                                     </span>
                                                 </label>
                                                 <label class="row form-check form-switch" for="toggleColumn_actions">
@@ -204,12 +172,8 @@
                                             <label class="form-check-label" for="datatableCheckAll"></label>
                                         </div>
                                     </th>
-                                    <th>Income Name</th>
-                                    <th>Source</th>
-                                    <th>Frequency</th>
-                                    <th>Tax Status</th>
-                                    <th>Deposit Account</th>
-                                    <th>Income Amount</th>
+                                    <th>Account Name</th>
+                                    <th>Account Type</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -221,31 +185,14 @@
                                             <label class="form-check-label" for="ordersCheck1"></label>
                                         </div>
                                     </td>
-                                    <td>Primary Income</td>
+                                    <td>Checking Account</td>
                                     <td>
-                                        <a class="text-body" href="./ecommerce-customer-details.html">employer</a>
+                                        <a class="text-body" href="./ecommerce-customer-details.html">Bank Account</a>
                                     </td>
-                                    <td>
-                                        <span class="badge bg-soft-success text-success">
-                                            <span class="bg-success"></span>bi-weekly
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span class="badge bg-soft-info text-info">
-                                            <span class="legend-indicator bg-info"></span>Taxable
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <img class="avatar avatar-xss avatar-4x3 me-2" src="{{ url_for('static', filename='assets/svg/brands/bank-of-america-icon.svg') }}" alt="Image Description">
-                                            <span class="text-dark">&bull;&bull;&bull;&bull; checking acct.</span>
-                                        </div>
-                                    </td>
-                                    <td>$256.39</td>
                                     <td>
                                         <div class="btn-group" role="group">
                                             <a class="btn btn-danger btn-sm" href="./users-add-user.html">
-                                                Remove Income
+                                                Remove Account
                                             </a>
                                         </div>
                                     </td>
@@ -284,7 +231,7 @@
             </div>
             {% include 'internal/_footer.html' %}
         </main>
-        {% include 'internal/modals/create-income.html' %}
+        {% include 'internal/modals/create-deposit-account.html' %}
         <script src="{{ url_for('static', filename='assets/vendor/jquery/dist/jquery.min.js') }}"></script>
         <script src="{{ url_for('static', filename='assets/vendor/jquery-migrate/dist/jquery-migrate.min.js') }}"></script>
         <script src="{{ url_for('static', filename='assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
